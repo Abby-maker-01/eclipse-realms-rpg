@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#10101b">
+<title>ECLIPSE: Realms of Ruin</title>
+<style>
+:root{--bg:#10101b;--panel:#1a1a2b;--panel2:#23233a;--line:#393953;--text:#f3f0ff;--muted:#a8a5c4;--purple:#a78bfa;--cyan:#67e8f9;--gold:#facc15;--red:#fb7185;--green:#86efac}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#292144 0,#10101b 48%);color:var(--text);font-family:monospace;min-height:100vh}button,select,input{font:inherit}button{cursor:pointer;border:1px solid #565174;background:#302b4c;color:#fff;padding:10px 12px;border-radius:8px}button:active{transform:scale(.98)}button:disabled{opacity:.4;cursor:not-allowed}.app{max-width:1000px;margin:auto;padding:14px}.hero{border:1px solid #4b426e;background:linear-gradient(135deg,#26213d,#151522);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px}.logo{font-size:38px;filter:drop-shadow(0 0 10px #a78bfa)}h1{font-size:clamp(19px,4vw,28px);margin:0;color:#ddd6fe;letter-spacing:1px}.sub{color:var(--muted);font-size:11px;margin-top:6px}.topstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.statbox,.panel{background:#191927eF;border:1px solid var(--line);border-radius:12px;padding:12px}.statbox small,.muted{color:var(--muted)}.statbox b{display:block;margin-top:5px;font-size:16px}.bar{height:8px;background:#343447;border-radius:9px;overflow:hidden;margin-top:6px}.bar span{height:100%;display:block;background:linear-gradient(90deg,#8b5cf6,#c4b5fd)}.bar.hp span{background:linear-gradient(90deg,#e11d48,#fb7185)}.bar.mp span{background:linear-gradient(90deg,#0891b2,#67e8f9)}.tabs{display:flex;gap:7px;overflow:auto;padding:2px 0 10px}.tabs button{white-space:nowrap;flex:1}.tabs button.active{background:#6d4ac5;border-color:#c4b5fd}.layout{display:grid;grid-template-columns:1fr 1fr;gap:12px}.panel h2{font-size:15px;margin:0 0 12px;color:#c4b5fd}.row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0}.pill{border:1px solid #51466f;background:#29243e;border-radius:999px;padding:4px 7px;font-size:10px;color:#ddd6fe}.pixel{image-rendering:pixelated}.avatar{height:116px;display:grid;place-items:center;font-size:64px;background:linear-gradient(#28233d,#161622);border:1px solid #494064;border-radius:10px;margin-bottom:10px}.griditems{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.item{padding:10px;border:1px solid var(--line);border-radius:9px;background:#202032}.item strong{display:block;margin:5px 0}.item small{color:var(--muted)}.common{color:#d4d4d8}.rare{color:#67e8f9}.epic{color:#c4b5fd}.legendary{color:#facc15}.log{height:170px;overflow:auto;background:#0b0b12;border:1px solid #33334a;border-radius:8px;padding:10px;font-size:11px;line-height:1.7}.log div{border-bottom:1px dashed #29293c;padding:2px 0}.actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.primary{background:#6d28d9;border-color:#a78bfa}.danger{background:#7f1d35;border-color:#fb7185}.good{background:#14532d;border-color:#4ade80}.hidden{display:none}.foot{text-align:center;color:#77758f;font-size:10px;padding:16px}.notice{font-size:11px;color:#c4b5fd;margin-top:8px}.selectrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}select,input{width:100%;background:#11111d;color:#fff;border:1px solid #48445f;padding:9px;border-radius:7px}.quest{padding:9px;border-radius:8px;background:#222237;margin:7px 0;border:1px solid #3a3851}@media(max-width:650px){.layout{grid-template-columns:1fr}.topstats{grid-template-columns:repeat(3,1fr)}.statbox{padding:9px}.hero{padding:12px}.logo{font-size:30px}.tabs button{font-size:11px;padding:9px 10px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero"><div class="logo">☾</div><div><h1>ECLIPSE: REALMS OF RUIN</h1><div class="sub">DUNIA RUNTUH • TAKDIR ADA DI TANGANMU</div></div></header>
+  <section class="topstats">
+    <div class="statbox"><small>LEVEL / EXP</small><b id="levelText">Lv. 1 · 0/30</b><div class="bar"><span id="expBar" style="width:0%"></span></div></div>
+    <div class="statbox"><small>HP</small><b id="hpText">100 / 100</b><div class="bar hp"><span id="hpBar" style="width:100%"></span></div></div>
+    <div class="statbox"><small>MP</small><b id="mpText">40 / 40</b><div class="bar mp"><span id="mpBar" style="width:100%"></span></div></div>
+  </section>
+  <nav class="tabs">
+    <button class="active" data-tab="battle">⚔ Battle</button><button data-tab="profile">♟ Profil</button><button data-tab="equipment">🛡 Equipment</button><button data-tab="inventory">🎒 Inventory</button><button data-tab="quests">📜 Quest</button>
+  </nav>
+  <main>
+    <section id="battle" class="tabpage">
+      <div class="layout">
+        <div class="panel">
+          <h2>✦ AREA EKSPLORASI</h2>
+          <div class="avatar" id="monsterIcon">👾</div>
+          <div class="row"><strong id="monsterName">Slime Liar</strong><span class="pill" id="monsterLevel">Lv. 1</span></div>
+          <div class="muted" id="monsterDesc">Makhluk lemah yang muncul di reruntuhan.</div>
+          <div class="row"><small>HP MONSTER</small><b id="monsterHpText">35 / 35</b></div><div class="bar hp"><span id="monsterHpBar" style="width:100%"></span></div>
+          <div class="actions"><button class="primary" id="attackBtn">⚔ Serang</button><button id="skillBtn">✦ Shadow Slash (8 MP)</button><button id="potionBtn">🧪 Potion</button><button id="nextBtn">➜ Cari Monster</button></div>
+          <div class="notice">Kalahkan monster untuk memperoleh EXP, gold, dan kemungkinan loot.</div>
+        </div>
+        <div class="panel"><h2>⌁ CATATAN PERTARUNGAN</h2><div id="battleLog" class="log"><div>◆ Kamu memasuki wilayah Eclipse...</div><div>◆ Kabut hitam bergerak di antara reruntuhan.</div></div><div class="row"><span class="muted">Gold</span><b id="goldText">25 G</b></div><div class="row"><span class="muted">Monster dikalahkan</span><b id="killsText">0</b></div></div>
+      </div>
+    </section>
+    <section id="profile" class="tabpage hidden">
+      <div class="layout">
+        <div class="panel"><h2>♟ PROFIL PETUALANG</h2><div class="avatar">🧙</div><label class="muted">Nama karakter</label><input id="charName" maxlength="18" value="Wanderer"><div class="selectrow" style="margin-top:9px"><div><label class="muted">Ras</label><select id="race"><option>Human</option><option>Elf</option><option>Demon</option><option>Vampire</option><option>Dragonkin</option><option>Voidborn</option></select></div><div><label class="muted">Class</label><select id="class"><option>Shadow Knight</option><option>Warrior</option><option>Assassin</option><option>Mage</option><option>Archer</option></select></div></div><div class="actions"><button class="primary" id="saveProfile">Simpan Profil</button></div><p class="notice">Ras dan class bisa kamu ubah di versi demo ini. Setiap ras memberi bonus atribut berbeda.</p></div>
+        <div class="panel"><h2>✧ ATRIBUT KARAKTER</h2><div id="attributes"></div><div class="row"><span>Poin atribut tersedia</span><b id="pointsText">0</b></div><div class="actions"><button data-stat="str">+ STR</button><button data-stat="vit">+ VIT</button><button data-stat="agi">+ AGI</button><button data-stat="int">+ INT</button></div></div>
+      </div>
+    </section>
+    <section id="equipment" class="tabpage hidden"><div class="panel"><h2>🛡 EQUIPMENT</h2><div class="griditems" id="equipmentGrid"></div><div class="notice">Pasang item dari inventory untuk meningkatkan kekuatan karakter.</div></div></section>
+    <section id="inventory" class="tabpage hidden"><div class="panel"><h2>🎒 TAS PETUALANG</h2><div class="row"><span>Item yang dibawa</span><b id="itemCount">0</b></div><div class="griditems" id="inventoryGrid"></div></div></section>
+    <section id="quests" class="tabpage hidden"><div class="panel"><h2>📜 JOURNAL / QUEST</h2><div class="quest"><strong>Quest Utama: Awal Perjalanan</strong><p class="muted">Kalahkan 3 monster untuk membuktikan kemampuanmu.</p><div id="questProgress">Progress: 0/3</div></div><div class="quest"><strong>Quest Sampingan: Pengumpul Gold</strong><p class="muted">Kumpulkan 100 Gold dari petualangan.</p><div id="goldQuest">Progress: 25/100 G</div></div><div class="quest"><strong>Catatan Dunia</strong><p class="muted">Legenda menyebutkan ras Voidborn hanya muncul ketika gerhana menutupi tiga bulan.</p></div></div></section>
+  </main>
+  <div class="foot">ECLIPSE: REALMS OF RUIN · Prototype RPG pixel-style · Progress tersimpan di perangkat ini</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const monsters=[
+ {name:"Slime Liar",icon:"🟣",desc:"Makhluk lemah yang muncul di reruntuhan.",hp:35,atk:5,exp:12,gold:8,level:1},
+ {name:"Goblin Pengintai",icon:"👺",desc:"Licik, cepat, dan suka mengincar petualang baru.",hp:55,atk:8,exp:18,gold:13,level:2},
+ {name:"Serigala Bayangan",icon:"🐺",desc:"Pemburu yang bergerak mengikuti gelap.",hp:75,atk:11,exp:25,gold:18,level:3},
+ {name:"Skeleton Knight",icon:"💀",desc:"Ksatria lama yang masih menjaga reruntuhan.",hp:100,atk:14,exp:35,gold:24,level:4},
+ {name:"Demon Guard",icon:"👹",desc:"Penjaga gerbang yang dipenuhi energi terlarang.",hp:150,atk:19,exp:52,gold:35,level:6},
+ {name:"Abyss Dragon",icon:"🐉",desc:"Boss kuno. Bahkan udara di sekitarnya terasa berat.",hp:280,atk:27,exp:100,gold:80,level:10}
+];
+const items=[
+ {id:"rusty",name:"Rusty Sword",icon:"🗡️",slot:"Senjata",rarity:"common",bonus:{atk:4},desc:"+4 ATK"},
+ {id:"leather",name:"Leather Armor",icon:"🥋",slot:"Armor",rarity:"common",bonus:{def:3},desc:"+3 DEF"},
+ {id:"shadow",name:"Shadow Fang",icon:"🌑",slot:"Senjata",rarity:"epic",bonus:{atk:12,agi:3},desc:"+12 ATK · +3 AGI"},
+ {id:"moon",name:"Moon Pendant",icon:"🌙",slot:"Aksesoris",rarity:"rare",bonus:{mp:10,int:3},desc:"+10 MP · +3 INT"},
+ {id:"boots",name:"Swift Boots",icon:"👢",slot:"Sepatu",rarity:"rare",bonus:{agi:5},desc:"+5 AGI"},
+ {id:"potion",name:"Potion",icon:"🧪",slot:"Consumable",rarity:"common",bonus:{},desc:"Pulihkan 35 HP"}
+];
+let state={name:"Wanderer",race:"Human",job:"Shadow Knight",level:1,exp:0,hp:100,mp:40,gold:25,kills:0,points:0,stats:{str:5,vit:5,agi:5,int:5},inventory:["rusty","leather","potion","potion"],equipment:{Senjata:null,Armor:null,Helm:null,Sepatu:null,Aksesoris:null},monsterIndex:0,monsterHp:35};
+function maxHp(){return 100+(state.level-1)*12+state.stats.vit*5+ (state.race==="Dragonkin"?20:0)}
+function maxMp(){return 40+(state.level-1)*5+state.stats.int*4+(state.race==="Elf"?10:0)}
+function gearStat(k){let n=0;Object.values(state.equipment).forEach(id=>{let it=items.find(x=>x.id===id);if(it)n+=it.bonus[k]||0});return n}
+function stat(k){let raceBonus=state.race==="Demon"&&k==="str"?3:state.race==="Elf"&&k==="agi"?3:state.race==="Vampire"&&k==="int"?3:state.race==="Dragonkin"&&k==="vit"?3:state.race==="Voidborn"&&k==="int"?5:0;return state.stats[k]+raceBonus+gearStat(k==="str"?"atk":k==="vit"?"def":k)}
+function attackPower(){return 8+state.stats.str*2+gearStat("atk")+(state.job==="Warrior"?4:state.job==="Assassin"?2:0)}
+function defense(){return 2+state.stats.vit+gearStat("def")+(state.race==="Dragonkin"?3:0)}
+function log(s){let d=document.createElement("div");d.textContent="◆ "+s;$("battleLog").prepend(d);while($("battleLog").children.length>24)$("battleLog").lastChild.remove()}
+function save(){try{localStorage.setItem("eclipseRpgSave",JSON.stringify(state))}catch(e){}}
+function load(){try{let s=JSON.parse(localStorage.getItem("eclipseRpgSave"));if(s)state={...state,...s,stats:{...state.stats,...s.stats},equipment:{...state.equipment,...s.equipment}}}catch(e){}}
+function render(){
+ $("levelText").textContent=`Lv. ${state.level} · ${state.exp}/${state.level*30}`;$("expBar").style.width=Math.min(100,state.exp/(state.level*30)*100)+"%";
+ state.hp=Math.min(state.hp,maxHp());state.mp=Math.min(state.mp,maxMp());
+ $("hpText").textContent=`${state.hp} / ${maxHp()}`;$("hpBar").style.width=state.hp/maxHp()*100+"%";
+ $("mpText").textContent=`${state.mp} / ${maxMp()}`;$("mpBar").style.width=state.mp/maxMp()*100+"%";
+ $("goldText").textContent=state.gold+" G";$("killsText").textContent=state.kills;
+ let m=monsters[state.monsterIndex];$("monsterIcon").textContent=m.icon;$("monsterName").textContent=m.name;$("monsterLevel").textContent="Lv. "+m.level;$("monsterDesc").textContent=m.desc;$("monsterHpText").textContent=Math.max(0,state.monsterHp)+" / "+m.hp;$("monsterHpBar").style.width=Math.max(0,state.monsterHp)/m.hp*100+"%";
+ $("charName").value=state.name;$("race").value=state.race;$("class").value=state.job;$("pointsText").textContent=state.points;
+ $("attributes").innerHTML=[["str","STR · Kekuatan"],["vit","VIT · Ketahanan"],["agi","AGI · Kelincahan"],["int","INT · Sihir"]].map(([k,n])=>`<div class="row"><span>${n}</span><b>${state.stats[k]} ${k==="str"&&state.race==="Demon"?"+3":k==="agi"&&state.race==="Elf"?"+3":k==="int"&&state.race==="Voidborn"?"+5":""}</b></div>`).join("");
+ $("equipmentGrid").innerHTML=Object.entries(state.equipment).map(([slot,id])=>{let it=items.find(x=>x.id===id);return `<div class="item"><small>${slot}</small><strong>${it?it.icon+" "+it.name:"— Kosong —"}</strong><small>${it?it.desc:"Belum dipasang"}</small>${it?`<div style="margin-top:8px"><button data-unequip="${slot}">Lepas</button></div>`:""}</div>`}).join("");
+ $("inventoryGrid").innerHTML=state.inventory.length?state.inventory.map((id,i)=>{let it=items.find(x=>x.id===id);return it?`<div class="item"><span class="${it.rarity}">${it.icon}</span><strong class="${it.rarity}">${it.name}</strong><small>${it.desc}</small><div style="margin-top:8px"><button data-use="${i}">${it.slot==="Consumable"?"Gunakan":"Pasang"}</button></div></div>`:""}).join(""):`<div class="muted">Tas kosong. Kalahkan monster untuk mendapatkan loot.</div>`;
+ $("itemCount").textContent=state.inventory.length;$("questProgress").textContent=`Progress: ${Math.min(3,state.kills)}/3 ${state.kills>=3?"✓ Selesai!":""}`;$("goldQuest").textContent=`Progress: ${Math.min(100,state.gold)}/100 G ${state.gold>=100?"✓ Selesai!":""}`;
+ save();
+}
+function enemyTurn(){if(state.monsterHp<=0)return;let m=monsters[state.monsterIndex];let dmg=Math.max(1,m.atk+Math.floor(Math.random()*4)-defense());state.hp=Math.max(0,state.hp-dmg);log(`${m.name} menyerangmu sebesar ${dmg} damage.`);if(state.hp<=0){state.hp=Math.ceil(maxHp()*.5);state.mp=Math.ceil(maxMp()*.5);state.gold=Math.max(0,state.gold-5);log("Kamu tumbang! Dibawa kembali ke camp. Kehilangan 5 Gold.");}}
+function winMonster(){let m=monsters[state.monsterIndex];state.exp+=m.exp;state.gold+=m.gold;state.kills++;log(`${m.name} dikalahkan! +${m.exp} EXP, +${m.gold} Gold.`);if(Math.random()<.38){let possible=["potion","moon","boots","shadow"];let id=possible[Math.floor(Math.random()*possible.length)];state.inventory.push(id);log(`Loot ditemukan: ${items.find(x=>x.id===id).name}!`)}while(state.exp>=state.level*30){state.exp-=state.level*30;state.level++;state.points+=3;state.hp=maxHp();state.mp=maxMp();log(`LEVEL UP! Sekarang level ${state.level}. +3 poin atribut.`)}state.monsterHp=0}
+$("attackBtn").onclick=()=>{if(state.monsterHp<=0){log("Monster sudah dikalahkan. Cari monster baru!");return}let d=attackPower()+Math.floor(Math.random()*6);state.monsterHp=Math.max(0,state.monsterHp-d);log(`Kamu menyerang ${monsters[state.monsterIndex].name} sebesar ${d} damage.`);if(state.monsterHp<=0)winMonster();else enemyTurn();render()};
+$("skillBtn").onclick=()=>{if(state.mp<8){log("MP tidak cukup!");return}if(state.monsterHp<=0){log("Cari monster baru terlebih dahulu.");return}state.mp-=8;let d=attackPower()*1.8+state.stats.agi;state.monsterHp=Math.max(0,state.monsterHp-Math.floor(d));log(`SHADOW SLASH! Serangan bayangan menghasilkan ${Math.floor(d)} damage.`);if(state.monsterHp<=0)winMonster();else enemyTurn();render()};
+$("potionBtn").onclick=()=>{let i=state.inventory.indexOf("potion");if(i<0){log("Potion tidak tersedia di inventory.");return}state.inventory.splice(i,1);let before=state.hp;state.hp=Math.min(maxHp(),state.hp+35);log(`Potion memulihkan ${state.hp-before} HP.`);render()};
+$("nextBtn").onclick=()=>{state.monsterIndex=(state.monsterIndex+1)%monsters.length;let m=monsters[state.monsterIndex];state.monsterHp=m.hp;log(`Kamu menemukan ${m.name} (Lv. ${m.level}).`);render()};
+$("saveProfile").onclick=()=>{state.name=$("charName").value.trim()||"Wanderer";state.race=$("race").value;state.job=$("class").value;log(`Profil disimpan: ${state.name}, ${state.race} ${state.job}.`);render()};
+document.querySelectorAll("[data-stat]").forEach(b=>b.onclick=()=>{let k=b.dataset.stat;if(state.points>0){state.stats[k]++;state.points--;log(`Atribut ${k.toUpperCase()} meningkat.`);render()}else log("Poin atribut tidak cukup. Naikkan level untuk mendapat poin.")});
+document.addEventListener("click",e=>{let u=e.target.dataset.use;if(u!==undefined){let i=Number(u),id=state.inventory[i],it=items.find(x=>x.id===id);if(!it)return;if(it.slot==="Consumable"){if(id==="potion"){state.hp=Math.min(maxHp(),state.hp+35);state.inventory.splice(i,1);log("Potion digunakan dari inventory.")}}else{let old=state.equipment[it.slot]||null;state.equipment[it.slot]=id;state.inventory.splice(i,1);if(old)state.inventory.push(old);log(`${it.name} dipasang.`)}render()}let slot=e.target.dataset.unequip;if(slot){let id=state.equipment[slot];if(id){state.inventory.push(id);state.equipment[slot]=null;log("Equipment dilepas.")}render()}});
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".tabpage").forEach(x=>x.classList.add("hidden"));$(b.dataset.tab).classList.remove("hidden")});
+load();if(!state.monsterHp)state.monsterHp=monsters[state.monsterIndex].hp;render();
+</script>
+</body>
+</html>
